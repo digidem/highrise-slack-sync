@@ -1,0 +1,26 @@
+{
+  "name": "highrise-slack-webhook",
+  "version": "1.0.0",
+  "description": "Send webhooks to Slack when a Highrise note or email is added",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "highrise",
+    "slack",
+    "webhook"
+  ],
+  "author": "Gregor MacLennan",
+  "license": "MIT",
+  "dependencies": {
+    "camelcase": "^4.0.0",
+    "debug": "^2.6.3",
+    "dotenv": "^4.0.0",
+    "mailparser": "^2.0.2",
+    "redis": "^2.7.1",
+    "request": "^2.81.0",
+    "run-series": "^1.1.4",
+    "xml2js": "^0.4.17"
+  }
+}
