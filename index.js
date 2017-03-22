@@ -1,5 +1,5 @@
 var redis = require('redis').createClient(process.env.REDIS_URL)
-var debug = require('debug')('highrise-slack-cmd')
+var debug = require('debug')('highrise-slack:cmd')
 
 var sync = require('./lib/sync')
 
