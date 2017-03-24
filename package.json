@@ -1,7 +1,7 @@
 {
   "name": "highrise-slack-webhook",
   "version": "1.0.0",
-  "description": "Send webhooks to Slack when a Highrise note or email is added",
+  "description": "Send notifications to Slack when a Highrise note or email is added",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -22,5 +22,14 @@
     "request": "^2.81.0",
     "run-series": "^1.1.4",
     "xml2js": "^0.4.17"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digidem/highrise-slack-webhook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/digidem/highrise-slack-webhook/issues"
+  },
+  "homepage": "https://github.com/digidem/highrise-slack-webhook#readme"
 }

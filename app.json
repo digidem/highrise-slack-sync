@@ -1,0 +1,24 @@
+{
+  "name": "Highrise Slack Webhook",
+  "description": "Send notifications to Slack when a Highrise note or email is added",
+  "keywords": [
+    "slack",
+    "highrise",
+    "webhook"
+  ],
+  "addons": [
+    "heroku-redis:hobby-dev",
+    "scheduler:standard"
+  ],
+  "env": {
+    "HIGHRISE_TOKEN": {
+      "description": "Highrise API token"
+    },
+    "HIGHRISE_URL": {
+      "description": "Your Highrise URL https://<username>.highrisehq.com/"
+    },
+    "SLACK_URL": {
+      "description": "Slack incoming webhook URL, create this in your Slack custom integrations"
+    }
+  }
+}
