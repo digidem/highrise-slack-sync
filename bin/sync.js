@@ -5,6 +5,11 @@ var sync = require('../lib/sync')
 var since = new Date(process.argv[2])
 
 sync(since, function (err, lastCheck) {
-  if (err) return console.error(err)
-  console.log('synced highrise from:', since)
+  if (err) {
+    console.error(err)
+    process.exit(1)
+  } else {
+    console.log('synced highrise from:', since)
+    process.exit()
+  }
 })
