@@ -17,6 +17,9 @@
     "HIGHRISE_URL": {
       "description": "Your Highrise URL https://<username>.highrisehq.com/"
     },
+    "HIGHRISE_GROUPS": {
+      "description": "Comma-separated list of groups to include messages from (the user that creates the API token must have access to these groups"
+    },
     "SLACK_URL": {
       "description": "Slack incoming webhook URL, create this in your Slack custom integrations"
     }
