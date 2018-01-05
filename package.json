@@ -18,6 +18,7 @@
     "debug": "^2.6.3",
     "dotenv": "^4.0.0",
     "mailparser": "^2.0.2",
+    "once": "^1.4.0",
     "redis": "^2.7.1",
     "request": "^2.81.0",
     "run-series": "^1.1.4",
