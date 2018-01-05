@@ -14,15 +14,15 @@
   "author": "Gregor MacLennan",
   "license": "MIT",
   "dependencies": {
-    "camelcase": "^4.0.0",
-    "debug": "^2.6.3",
+    "camelcase": "^4.1.0",
+    "debug": "^2.6.9",
     "dotenv": "^4.0.0",
-    "mailparser": "^2.0.2",
+    "mailparser": "^2.1.0",
     "once": "^1.4.0",
-    "redis": "^2.7.1",
-    "request": "^2.81.0",
+    "redis": "^2.8.0",
+    "request": "^2.83.0",
     "run-series": "^1.1.4",
-    "xml2js": "^0.4.17"
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {},
   "repository": {
