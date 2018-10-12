@@ -22,6 +22,10 @@
     },
     "SLACK_URL": {
       "description": "Slack incoming webhook URL, create this in your Slack custom integrations"
+    },
+    "EVERYONE": {
+      "description": "Set to TRUE to include emails and notes visible to everyone (not just HIGHRISE_GROUPS) in webhooks",
+      "value": "FALSE"
     }
   }
 }
