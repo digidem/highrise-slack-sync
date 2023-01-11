@@ -1,9 +1,7 @@
 import { createClient } from 'redis'
 import makeDebug from 'debug'
-import sync from './lib/sync'
-import * as dotenv from 'dotenv'
+import sync from './lib/sync.js'
 
-dotenv.config()
 const debug = makeDebug('highrise-slack:cmd')
 const redis = createClient(process.env.REDIS_URL)
 const ONE_WEEK = 1000 * 60 * 60 * 24 * 7

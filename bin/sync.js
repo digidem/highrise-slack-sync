@@ -1,15 +1,18 @@
 #!/usr/bin/env node
+import sync from '../lib/sync.js'
+import * as dotenv from 'dotenv'
 
-var sync = require('../lib/sync')
+dotenv.config()
 
-var since = new Date(process.argv[2])
+const config = {
+  highriseToken: process.env.HIGHRISE_TOKEN,
+  highriseUrl: process.env.HIGHRISE_URL.replace(/\/?$/, '/'),
+  slackUrl: process.env.SLACK_URL,
+  groups: (process.env.HIGHRISE_GROUPS || '').split(',').map(Number),
+  showEveryone: (process.env.EVERYONE || '').toLowerCase() === 'true'
+}
 
-sync(since, function (err, lastCheck) {
-  if (err) {
-    console.error(err)
-    process.exit(1)
-  } else {
-    console.log('synced highrise from:', since)
-    process.exit()
-  }
-})
+const since = new Date(process.argv[2])
+
+const lastCheck = await sync({ ...config, since })
+console.log('synced highrise from %s to %s', since, lastCheck)

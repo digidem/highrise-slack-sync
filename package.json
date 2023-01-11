@@ -15,17 +15,14 @@
   "author": "Gregor MacLennan",
   "license": "MIT",
   "dependencies": {
-    "camelcase": "^4.1.0",
-    "debug": "^2.6.9",
+    "camelcase": "^7.0.1",
+    "debug": "^4.3.4",
     "dotenv": "^4.0.0",
-    "mailparser": "^3.0.0",
-    "once": "^1.4.0",
+    "ky-universal": "^0.11.0",
+    "mailparser": "^3.6.3",
     "redis": "^2.8.0",
-    "request": "^2.88.2",
-    "run-series": "^1.1.8",
-    "xml2js": "^0.4.19"
+    "xml2js": "^0.4.23"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/digidem/highrise-slack-webhook.git"
