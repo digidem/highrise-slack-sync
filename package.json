@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Send notifications to Slack when a Highrise note or email is added",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
