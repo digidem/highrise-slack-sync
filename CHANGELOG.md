@@ -1,0 +1,21 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## 1.1.0 (2023-01-12)
+
+
+### Features
+
+* Also sync highrise comments to Slack ([b19e8d2](https://github.com/digidem/highrise-slack-webhook/commit/b19e8d27e820ac1edde06d51228be946e1651629))
+
+
+### Bug Fixes
+
+* Fix email parsing (was truncating first lines of messages) ([0754d37](https://github.com/digidem/highrise-slack-webhook/commit/0754d37ed71252376cebdcea39a2cc05fe4063af))
+* Fix retry code ([307cda1](https://github.com/digidem/highrise-slack-webhook/commit/307cda1a016d774e1b1c82d72772434c59226847))
+* Fix silly error getting subject ([28d3c85](https://github.com/digidem/highrise-slack-webhook/commit/28d3c85982572c0948a1f42bef2ae630410d36c8))
+* Handle notes and emails about companies as well as people ([edcb5dc](https://github.com/digidem/highrise-slack-webhook/commit/edcb5dc845e2f3c293c9a77bc6f07cca2b57160d))
+* include types in npm publish ([0848790](https://github.com/digidem/highrise-slack-webhook/commit/084879023d9c11c451ade1e9e08d45ccc030e92c))
+* only sync notes for parties ([1923a51](https://github.com/digidem/highrise-slack-webhook/commit/1923a51257465739a062c89fcd85bcea4bcc5f3e))
+* Update last check data correctly ([aa3e0d4](https://github.com/digidem/highrise-slack-webhook/commit/aa3e0d42a764fa19a27d41568ba6f41199a3add0))

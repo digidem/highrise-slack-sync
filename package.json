@@ -1,6 +1,6 @@
 {
   "name": "highrise-slack-sync",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Send notifications to a Slack webhook for Highrise notes, emails and comments",
   "main": "src/index.js",
   "bin": "bin/sync.js",
@@ -18,7 +18,10 @@
   ],
   "author": "Gregor MacLennan",
   "license": "MIT",
-  "files": ["dist", "src"],
+  "files": [
+    "dist",
+    "src"
+  ],
   "dependencies": {
     "@types/debug": "^4.1.7",
     "@types/mailparser": "^3.4.0",
