@@ -18,6 +18,7 @@
   ],
   "author": "Gregor MacLennan",
   "license": "MIT",
+  "files": ["dist", "src"],
   "dependencies": {
     "@types/debug": "^4.1.7",
     "@types/mailparser": "^3.4.0",
