@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.2](https://github.com/digidem/highrise-slack-webhook/compare/v1.1.1...v1.1.2) (2023-01-12)
+
+
+### Bug Fixes
+
+* avoid passing param n: undefined ([cd27d87](https://github.com/digidem/highrise-slack-webhook/commit/cd27d87c06d7d4246bd64ad2d6e8b431c566819c))
+* failure when author no longer exists as user ([f9626f5](https://github.com/digidem/highrise-slack-webhook/commit/f9626f5fef1fda34dc8983d7172bcf484c97299e))
+
 ### [1.1.1](https://github.com/digidem/highrise-slack-webhook/compare/v1.1.0...v1.1.1) (2023-01-12)
 
 
