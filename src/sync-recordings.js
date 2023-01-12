@@ -36,11 +36,14 @@ export default async function syncRecordings (
   const data = await client.get('recordings.xml', { since })
 
   debug('Found %d new recordings in Highrise', data.length)
-  let msg =
-    'Filtering recordings of type ' + Object.keys(RECORDING_TYPES).join(', ')
-  if (showEveryone) msg += ' that are visible to everyone'
-  if (groups.length) msg += ' and visible to groups ' + groups.join(', ')
-  debug(msg)
+
+  let filterMsg = ''
+  if (showEveryone) filterMsg += ' that are visible to everyone'
+  if (groups.length)
+    filterMsg +=
+      (filterMsg ? ' and to' : ' that are visible to') +
+      ' groups ' +
+      groups.join(', ')
 
   if (!data.length) {
     debug('No new activity in Highrise since ' + since)
@@ -51,15 +54,15 @@ export default async function syncRecordings (
   const filteredData = data.filter(filterRecord).sort(cmp('createdAt'))
 
   if (!filteredData.length) {
-    debug('No matching recordings found')
+    debug('No matching recordings found' + filterMsg)
     return checkDatetime
   }
 
-  debug(`Found ${filteredData.length} filtered recordings`)
+  debug(`Found ${filteredData.length} recordings` + filterMsg)
 
   for (const rec of filteredData) {
     try {
-    rec.author = await client.get('users/' + rec.authorId + '.xml')
+      rec.author = await client.get('users/' + rec.authorId + '.xml')
     } catch (e) {
       // This will happen if the user that added the record is no longer a
       // Highrise user (e.g. we have removed the user because they have left Dd)
@@ -68,7 +71,7 @@ export default async function syncRecordings (
     await sendWebhook(rec)
   }
 
-  debug('Sent ' + filteredData.length + ' new recordings to Slack')
+  debug('Sent ' + filteredData.length + ' notifications to Slack')
   return checkDatetime
 
   /** @param {any} record */
