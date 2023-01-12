@@ -1,6 +1,6 @@
 {
   "name": "highrise-slack-sync",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Send notifications to a Slack webhook for Highrise notes, emails and comments",
   "main": "src/index.js",
   "bin": "bin/sync.js",

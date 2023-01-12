@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.1](https://github.com/digidem/highrise-slack-webhook/compare/v1.1.0...v1.1.1) (2023-01-12)
+
+
+### Bug Fixes
+
+* update package-lock ([a22e5b5](https://github.com/digidem/highrise-slack-webhook/commit/a22e5b5f3fc2ef40ba7562852c4efba14f10471f))
+
 ## 1.1.0 (2023-01-12)
 
 
