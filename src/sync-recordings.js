@@ -28,7 +28,7 @@ const RECORDING_TYPES = {
  * @param {boolean} options.showEveryone If true, then also include records visible to everyone in sync
  * @returns {Promise<Date>} Highrise is now synced up to this date
  */
-export default async function sync (
+export default async function syncRecordings (
   since,
   { highriseToken, highriseUrl, slackUrl, groups, showEveryone }
 ) {

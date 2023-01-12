@@ -1,18 +1,55 @@
-# highrise-slack-webhook
+# highrise-slack-sync
 
-> Send notifications to Slack when a Highrise note or email is added
+> Send notifications to a Slack webhook for Highrise notes, emails and comments
 
-Will periodically check highrise for any new notes or emails and send notifications to a Slack channel with a preview of the email/note.
+Sync new recordings (notes, emails, comments) in Highrise to a Slack channel
+webhook, with a preview of the email/note.
 
-## Installation
+## CLI
 
-The easiest way to use this is to deploy to Heroku, you can run this on the Heroku Free Tier. Click the button below and enter the relevant details:
+### Environment variables
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+- `HIGHRISE_TOKEN` -- Highrise API token
+- `HIGHRISE_URL` -- Base URL for Highrise API requests
+- `SLACK_URL` -- URL for Slack channel webhook
+- `HIGHRISE_GROUPS` -- comma-separated list of Highrise group IDs. Only
+  recordings visible to these groups will be synced
+- `EVERYONE` -- set to `TRUE` to also sync recordings visible to "everyone" in
+  Highrise.
 
-Once the app is deployed visit the 'Resources' page for your app on the Heroku dashboard, and configure the scheduler to run the export command `node index.js` at the schedule of your preference.
+### Usage
 
-The first time that this script is run it will send notifications to Slack for all emails and notes from the past week. After that it will only send notifications of notes/emails created since the last check. Updating an email/note in Highrise currently does not cause a new notification in Slack.
+Sync all recordings since `2022-05-25T15:13:19.000Z`:
+
+```
+npx highrise-slack-sync 2022-05-25T15:13:19.000Z
+```
+
+You can also pass a Unix timestamp.
+
+## API
+
+### Installation
+
+```
+npm install highrise-slack-sync
+```
+
+### Usage
+
+```js
+import { syncRecordings } from 'highrise-slack-sync`
+
+const syncFromDate = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+
+const lastCheckedDate = await syncRecordings(syncFromDate, {
+  highriseToken: 'xxxxx',
+  highriseUrl: 'https://MY_WORKSPACE.highrisehq.com',
+  slackUrl: 'https://hooks.slack.com/services/XXXX',
+  groups: [555555],
+  showEveryone: true
+})
+```
 
 ## Contribute
 
