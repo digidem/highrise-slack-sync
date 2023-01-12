@@ -32,7 +32,7 @@ export default class Highrise {
 
   /**
    * @param {string} path API URL relative path
-   * @param {{ since?: Date, n?: number }} [options]
+   * @param {{ since?: Date }} [options]
    * @returns
    */
   async get (path, options = {}) {
@@ -40,7 +40,7 @@ export default class Highrise {
     const result = []
     const self = this
     /** @type {SearchParams} */
-    const searchParams = { n: options.n }
+    const searchParams = {}
     if (options.since) {
       searchParams.since = dateToString(options.since)
     }
