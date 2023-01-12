@@ -58,7 +58,12 @@ export default async function syncRecordings (
   debug(`Found ${filteredData.length} filtered recordings`)
 
   for (const rec of filteredData) {
+    try {
     rec.author = await client.get('users/' + rec.authorId + '.xml')
+    } catch (e) {
+      // This will happen if the user that added the record is no longer a
+      // Highrise user (e.g. we have removed the user because they have left Dd)
+    }
     rec.subject = await getSubject(rec.subjectId, rec.subjectType)
     await sendWebhook(rec)
   }
@@ -100,7 +105,8 @@ export default async function syncRecordings (
 
   /** @param {any} recording */
   async function sendWebhook (recording) {
-    const authorFirstName = recording.author.name.split(' ')[0]
+    const authorFirstName =
+      recording.author?.name.split(' ')[0] || 'Deleted User'
     // @ts-ignore
     const recordingType = RECORDING_TYPES[recording.type] || 'a note'
     let body = await parseBody(recording)
