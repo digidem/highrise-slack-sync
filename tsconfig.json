@@ -10,9 +10,10 @@
     "moduleResolution": "node",
     "allowJs": true,
     "checkJs": false,
-    "noEmit": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
     "typeRoots": ["types", "node_modules/@types"]
   },
-  "include": ["**/*"],
-  "exclude": ["node_modules"]
+  "include": ["index.js", "lib/*.js"],
+  "exclude": ["node_modules", "**/*.d.ts"]
 }
