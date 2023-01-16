@@ -13,6 +13,7 @@ const parser = new xml2js.Parser({
 })
 
 export default class Highrise {
+
   /**
    * @param {string} url Base URL for Highrise API requests
    * @param {string} token Highrise API token
@@ -28,7 +29,7 @@ export default class Highrise {
     })
   }
 
-  /** @typedef {{ since?: string, n?: number }} SearchParams */
+  /** @typedef {{ since?: string, n?: string }} SearchParams */
 
   /**
    * @param {string} path API URL relative path
@@ -61,7 +62,7 @@ export default class Highrise {
       if (data.length === 0) return result
       Array.prototype.push.apply(result, data)
       if (data.length < 25) return result
-      const n = (searchParams.n || 0) + 25
+      const n = (+(searchParams.n || 0) + 25).toString()
       return get(path, { ...searchParams, n })
     }
   }
