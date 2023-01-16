@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.3](https://github.com/digidem/highrise-slack-webhook/compare/v1.1.2...v1.1.3) (2023-01-16)
+
+
+### Bug Fixes
+
+* Fix highrise params ([af793fe](https://github.com/digidem/highrise-slack-webhook/commit/af793fe13321fec41dc50841125fb46bce6297ba))
+* workaround for error on Cloudflare Workers ([ef31dba](https://github.com/digidem/highrise-slack-webhook/commit/ef31dbabd0082f64a681071f707b9aafd801f5b5))
+
 ### [1.1.2](https://github.com/digidem/highrise-slack-webhook/compare/v1.1.1...v1.1.2) (2023-01-12)
 
 
