@@ -143,7 +143,7 @@ export default async function syncRecordings (
       payload.attachments[0].title = recording.title
       payload.attachments[0].title_link = `${highriseUrl}${recording.type}s/${recording.id}`
     }
-    await ky.post(slackUrl, { json: payload })
+    await ky.post(slackUrl, { json: payload, credentials: undefined })
   }
 }
 

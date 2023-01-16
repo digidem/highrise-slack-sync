@@ -54,7 +54,7 @@ export default class Highrise {
     async function get (path, searchParams) {
       log('get:', path, searchParams)
       const xml = await self.client
-        .get(path, { searchParams, retry: 10 })
+        .get(path, { searchParams, retry: 10, credentials: undefined })
         .text()
       const data = await parseXml(xml)
       if (!Array.isArray(data)) return data
