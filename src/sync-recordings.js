@@ -67,7 +67,12 @@ export default async function syncRecordings (
       // This will happen if the user that added the record is no longer a
       // Highrise user (e.g. we have removed the user because they have left Dd)
     }
-    rec.subject = await getSubject(rec.subjectId, rec.subjectType)
+    try {
+      rec.subject = await getSubject(rec.subjectId, rec.subjectType)
+    } catch (e) {
+      // This will happen if the subject is a user that is no longer a
+      // Highrise user (e.g. we have removed the user because they have left Dd)
+    }
     await sendWebhook(rec)
   }
 
@@ -116,10 +121,14 @@ export default async function syncRecordings (
     const truncatedBody = truncate(body)
     const recordingLink = highriseUrl + recording.type + 's/' + recording.id
     const subjectLink =
+      recording.subject &&
       highriseUrl +
-      getSubjectPath(recording.subjectType) +
-      '/' +
-      recording.subject.id
+        getSubjectPath(recording.subjectType) +
+        '/' +
+        recording.subject.id
+    const subjectText = subjectLink
+      ? `<${subjectLink}|${recording.subjectName}>`
+      : `${recording.subjectName}`
     if (truncatedBody !== body) {
       body = truncatedBody + ` <${recordingLink}|Read more…>`
     }
@@ -127,7 +136,7 @@ export default async function syncRecordings (
     const payload = {
       text:
         `${authorFirstName} shared <${recordingLink}|${recordingType}> ` +
-        `about <${subjectLink}|${recording.subjectName}>`,
+        `about ${subjectText}`,
       username: 'highrise',
       icon_url: 'http://68.media.tumblr.com/avatar_079aaa3d2066_128.png',
       attachments: [
