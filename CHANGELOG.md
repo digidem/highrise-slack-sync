@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.1.4](https://github.com/digidem/highrise-slack-webhook/compare/v1.1.3...v1.1.4) (2023-04-12)
+
+
+### Bug Fixes
+
+* fix error for missing subject ([b340299](https://github.com/digidem/highrise-slack-webhook/commit/b340299c4bb0c75202df725c492cd25a2e355816))
+
 ### [1.1.3](https://github.com/digidem/highrise-slack-webhook/compare/v1.1.2...v1.1.3) (2023-01-16)
 
 
