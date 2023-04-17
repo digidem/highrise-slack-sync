@@ -14,6 +14,9 @@ const RECORDING_TYPES = {
   comment: 'a comment'
 }
 
+// How many requests are needed per record?
+const REQ_PER_RECORD = 4
+
 /** @typedef {{ fallback: string, text: string, ts: number, mrkdwn_in: Array<'text' | 'pretext'>, title?: string, title_link?: string }} SlackWebhookAttachment */
 /** @typedef {{ text: string, username: string, icon_url: string, attachments: SlackWebhookAttachment[] }} SlackWebhookPayload */
 
@@ -26,11 +29,12 @@ const RECORDING_TYPES = {
  * @param {string} options.slackUrl Slack webhook URL
  * @param {number[]} options.groups Only include records visible to these highrise groups
  * @param {boolean} options.showEveryone If true, then also include records visible to everyone in sync
+ * @param {number} [options.requestLimit]
  * @returns {Promise<Date>} Highrise is now synced up to this date
  */
 export default async function syncRecordings (
   since,
-  { highriseToken, highriseUrl, slackUrl, groups, showEveryone }
+  { highriseToken, highriseUrl, slackUrl, groups, showEveryone, requestLimit = Infinity }
 ) {
   const client = new Highrise(highriseUrl, highriseToken)
   const data = await client.get('recordings.xml', { since })
@@ -50,15 +54,24 @@ export default async function syncRecordings (
     return since
   }
 
-  const checkDatetime = data.sort(cmp('updatedAt'))[data.length - 1].updatedAt
+  let checkDatetime = data.sort(cmp('updatedAt'))[data.length - 1].updatedAt
   const filteredData = data.filter(filterRecord).sort(cmp('createdAt'))
+  const initialFilteredCount = filteredData.length
 
   if (!filteredData.length) {
     debug('No matching recordings found' + filterMsg)
     return checkDatetime
   }
 
-  debug(`Found ${filteredData.length} recordings` + filterMsg)
+  debug(`Found ${initialFilteredCount} recordings` + filterMsg)
+
+  const maxRecords = Math.floor((requestLimit - client.requestCount) / REQ_PER_RECORD)
+  filteredData.splice(maxRecords + 1)
+  checkDatetime = filteredData[filteredData.length - 1].updatedAt
+
+  if (filteredData.length < initialFilteredCount) {
+    debug(`Only processing first ${filteredData.length} records due to requestLimit of ${requestLimit}`)
+  }
 
   for (const rec of filteredData) {
     try {

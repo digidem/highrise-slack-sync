@@ -20,6 +20,7 @@ export default class Highrise {
    */
   constructor (url, token) {
     const credentials = btoa(`${token}:X`)
+    this.requestCount = 0
     this.client = ky.create({
       prefixUrl: url.replace(/\/?$/, '/'),
       headers: {
@@ -53,7 +54,8 @@ export default class Highrise {
      * @returns {Promise<any>}
      */
     async function get (path, searchParams) {
-      log('get:', path, searchParams)
+      log('get:', path, new URLSearchParams(searchParams).toString())
+      self.requestCount++
       const xml = await self.client
         .get(path, { searchParams, retry: 10, credentials: undefined })
         .text()
