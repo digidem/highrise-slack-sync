@@ -3,7 +3,9 @@
   "version": "1.1.4",
   "description": "Send notifications to a Slack webhook for Highrise notes, emails and comments",
   "main": "src/index.js",
-  "bin": "bin/sync.js",
+  "bin": {
+    "highrise-slack-sync": "bin/sync.js"
+  },
   "types": "dist",
   "type": "module",
   "scripts": {
@@ -35,12 +37,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/digidem/highrise-slack-webhook.git"
+    "url": "git+https://github.com/digidem/highrise-slack-sync.git"
   },
   "bugs": {
-    "url": "https://github.com/digidem/highrise-slack-webhook/issues"
+    "url": "https://github.com/digidem/highrise-slack-sync/issues"
   },
-  "homepage": "https://github.com/digidem/highrise-slack-webhook#readme",
+  "homepage": "https://github.com/digidem/highrise-slack-sync#readme",
   "devDependencies": {
     "typescript": "^4.9.4"
   }
