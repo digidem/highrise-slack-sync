@@ -26,6 +26,13 @@ export default class Highrise {
       headers: {
         Authorization: `Basic ${credentials}`,
         'User-Agent': USER_AGENT
+      },
+      hooks: {
+        beforeRequest: [
+          () => {
+            this.requestCount++
+          }
+        ]
       }
     })
   }
@@ -55,7 +62,6 @@ export default class Highrise {
      */
     async function get (path, searchParams) {
       log('get:', path, new URLSearchParams(searchParams).toString())
-      self.requestCount++
       const xml = await self.client
         .get(path, { searchParams, retry: 10, credentials: undefined })
         .text()
