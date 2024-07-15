@@ -41,18 +41,19 @@ export default class Highrise {
 
   /**
    * @param {string} path API URL relative path
-   * @param {{ since?: Date }} [options]
+   * @param {{ since?: Date, maxPages?: number }} [options]
    * @returns
    */
-  async get (path, options = {}) {
+  async get (path, { since, maxPages = Infinity} = {}) {
     /** @type {any[]} */
     const result = []
     const self = this
     /** @type {SearchParams} */
     const searchParams = {}
-    if (options.since) {
-      searchParams.since = dateToString(options.since)
+    if (since) {
+      searchParams.since = dateToString(since)
     }
+    let pageCount = 0
     return get(path, searchParams)
 
     /**
@@ -62,6 +63,8 @@ export default class Highrise {
      */
     async function get (path, searchParams) {
       log('get:', path, new URLSearchParams(searchParams).toString())
+      if (pageCount >= maxPages) return result
+      pageCount++
       const xml = await self.client
         .get(path, { searchParams, retry: 10, credentials: undefined })
         .text()

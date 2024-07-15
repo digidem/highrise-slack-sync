@@ -37,7 +37,7 @@ export default async function syncRecordings (
   { highriseToken, highriseUrl, slackUrl, groups, showEveryone, requestLimit = Infinity }
 ) {
   const client = new Highrise(highriseUrl, highriseToken)
-  const data = await client.get('recordings.xml', { since })
+  const data = await client.get('recordings.xml', { since, maxPages: Math.ceil(requestLimit / 4) })
 
   debug('Found %d new recordings in Highrise', data.length)
 
