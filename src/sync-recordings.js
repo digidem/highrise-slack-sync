@@ -139,9 +139,10 @@ export default async function syncRecordings (
         getSubjectPath(recording.subjectType) +
         '/' +
         recording.subject.id
+    const subjectName = recording.subjectName || recording.subject?.firstName || 'Unknown Name'
     const subjectText = subjectLink
-      ? `<${subjectLink}|${recording.subjectName}>`
-      : `${recording.subjectName}`
+      ? `<${subjectLink}|${subjectName}>`
+      : `${subjectName}`
     if (truncatedBody !== body) {
       body = truncatedBody + ` <${recordingLink}|Read more…>`
     }
