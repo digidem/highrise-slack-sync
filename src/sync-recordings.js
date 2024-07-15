@@ -66,7 +66,7 @@ export default async function syncRecordings (
   debug(`Found ${initialFilteredCount} recordings` + filterMsg)
 
   const maxRecords = Math.floor((requestLimit - client.requestCount) / REQ_PER_RECORD)
-  filteredData.splice(maxRecords + 1)
+  filteredData.splice(maxRecords)
   checkDatetime = filteredData[filteredData.length - 1].updatedAt
 
   if (filteredData.length < initialFilteredCount) {
