@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.1.0](https://github.com/digidem/highrise-slack-sync/compare/v2.0.0...v2.1.0) (2024-07-15)
+
+
+### Features
+
+* limit number of pages to get from Highrise ([32b20aa](https://github.com/digidem/highrise-slack-sync/commit/32b20aafd8749b30692879cac897e90932c7245d))
+
+
+### Bug Fixes
+
+* count requests in hook to count retries ([a193c37](https://github.com/digidem/highrise-slack-sync/commit/a193c37eac752f12d0d5ed7d93a2786646dece6b))
+* fix zero-counting to keep in requestLimit ([43d5e5a](https://github.com/digidem/highrise-slack-sync/commit/43d5e5a1814a5769a996b93a96ae536c17bfbd5c))
+
 ## [2.0.0](https://github.com/digidem/highrise-slack-sync/compare/v1.1.4...v2.0.0) (2024-07-15)
 
 
