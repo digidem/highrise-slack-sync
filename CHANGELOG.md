@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [2.1.1](https://github.com/digidem/highrise-slack-sync/compare/v2.1.0...v2.1.1) (2024-07-15)
+
+
+### Bug Fixes
+
+* show email if subject name is not defined ([cc4d924](https://github.com/digidem/highrise-slack-sync/commit/cc4d9244e509a245d09dbfa04efb977d7c6bb851))
+
 ## [2.1.0](https://github.com/digidem/highrise-slack-sync/compare/v2.0.0...v2.1.0) (2024-07-15)
 
 
