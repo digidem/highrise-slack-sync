@@ -41,17 +41,20 @@ export default class Highrise {
 
   /**
    * @param {string} path API URL relative path
-   * @param {{ since?: Date, maxPages?: number }} [options]
+   * @param {object} [options]
+   * @param {Date} [options.since] Only return records created after this date
+   * @param {number} [options.maxPages] Maximum number of pages to fetch
    * @returns
    */
-  async get (path, { since, maxPages = Infinity} = {}) {
+  async get (path, options = {}) {
     /** @type {any[]} */
     const result = []
     const self = this
     /** @type {SearchParams} */
     const searchParams = {}
-    if (since) {
-      searchParams.since = dateToString(since)
+    const maxPages = typeof options.maxPages === 'number' ? options.maxPages : Infinity
+    if (options.since) {
+      searchParams.since = dateToString(options.since)
     }
     let pageCount = 0
     return get(path, searchParams)
