@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/digidem/highrise-slack-sync/compare/v1.1.4...v2.0.0) (2024-07-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* min Node v18 due to switch to ky
+v1 which depends on native fetch
+
+### Features
+
+* limit number of requests per run ([7d5730b](https://github.com/digidem/highrise-slack-sync/commit/7d5730b87d307d1b503ff1ec00f30c2a2c6d66bf))
+
+
+* update deps ([1caa030](https://github.com/digidem/highrise-slack-sync/commit/1caa030d495d8ecea092c8edb3688755d3588f34))
+
 ### [1.1.4](https://github.com/digidem/highrise-slack-webhook/compare/v1.1.3...v1.1.4) (2023-04-12)
 
 
