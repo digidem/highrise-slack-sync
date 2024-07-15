@@ -1,6 +1,6 @@
 // @ts-check
 
-import ky from 'ky-universal'
+import ky from 'ky'
 import { simpleParser } from 'mailparser'
 import makeDebug from 'debug'
 

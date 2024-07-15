@@ -1,6 +1,6 @@
 // @ts-check
 
-import ky from 'ky-universal'
+import ky from 'ky'
 import xml2js from 'xml2js'
 import camelCase from 'camelcase'
 import makeDebug from 'debug'
