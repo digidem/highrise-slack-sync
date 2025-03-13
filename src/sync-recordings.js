@@ -183,7 +183,17 @@ export default async function syncRecordings (
       payload.attachments[0].title = recording.title
       payload.attachments[0].title_link = `${highriseUrl}${recording.type}s/${recording.id}`
     }
-    await ky.post(slackUrl, { json: payload, credentials: undefined })
+    await ky.post(slackUrl, {
+      json: payload,
+      credentials: undefined,
+      // By default, ky does not retry POST requests
+      retry: {
+        limit: 2,
+        methods: ['get', 'put', 'head', 'delete', 'options', 'trace'],
+        statusCodes: [429],
+        afterStatusCodes: [429]
+      }
+    })
   }
 }
 
