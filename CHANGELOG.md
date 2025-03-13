@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/digidem/highrise-slack-sync/compare/v2.1.2...v2.2.0) (2025-03-13)
+
+
+### Features
+
+* rate limit sending webhooks to Slack ([5e929f2](https://github.com/digidem/highrise-slack-sync/commit/5e929f26b53aff04a3803bfc223c29512a9bdefe))
+
 ### [2.1.2](https://github.com/digidem/highrise-slack-sync/compare/v2.1.1...v2.1.2) (2024-07-15)
 
 ### [2.1.1](https://github.com/digidem/highrise-slack-sync/compare/v2.1.0...v2.1.1) (2024-07-15)
