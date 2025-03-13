@@ -35,10 +35,20 @@ const REQ_PER_RECORD = 4
  */
 export default async function syncRecordings (
   since,
-  { highriseToken, highriseUrl, slackUrl, groups, showEveryone, requestLimit = Infinity }
+  {
+    highriseToken,
+    highriseUrl,
+    slackUrl,
+    groups,
+    showEveryone,
+    requestLimit = Infinity
+  }
 ) {
   const client = new Highrise(highriseUrl, highriseToken)
-  const data = await client.get('recordings.xml', { since, maxPages: Math.ceil(requestLimit / 4) })
+  const data = await client.get('recordings.xml', {
+    since,
+    maxPages: Math.ceil(requestLimit / 4)
+  })
 
   debug('Found %d new recordings in Highrise', data.length)
 
@@ -66,12 +76,16 @@ export default async function syncRecordings (
 
   debug(`Found ${initialFilteredCount} recordings` + filterMsg)
 
-  const maxRecords = Math.floor((requestLimit - client.requestCount) / REQ_PER_RECORD)
+  const maxRecords = Math.floor(
+    (requestLimit - client.requestCount) / REQ_PER_RECORD
+  )
   filteredData.splice(maxRecords)
   checkDatetime = filteredData[filteredData.length - 1].updatedAt
 
   if (filteredData.length < initialFilteredCount) {
-    debug(`Only processing first ${filteredData.length} records due to requestLimit of ${requestLimit}`)
+    debug(
+      `Only processing first ${filteredData.length} records due to requestLimit of ${requestLimit}`
+    )
   }
 
   // rate limit sending webhooks to Slack to one every 100ms
@@ -141,7 +155,8 @@ export default async function syncRecordings (
         getSubjectPath(recording.subjectType) +
         '/' +
         recording.subject.id
-    const subjectName = recording.subjectName || recording.subject?.firstName || 'Unknown Name'
+    const subjectName =
+      recording.subjectName || recording.subject?.firstName || 'Unknown Name'
     const subjectText = subjectLink
       ? `<${subjectLink}|${subjectName}>`
       : `${subjectName}`
@@ -223,29 +238,29 @@ function cmp (prop) {
  * @returns {AsyncIterable<T>} A rate-limited asynchronous iterable
  * @template T
  */
-function rateLimitedAsyncIterable(iterable, intervalMs) {
+function rateLimitedAsyncIterable (iterable, intervalMs) {
   // Create a throttled function that will only be called once per intervalMs
   const throttled = pThrottle({
     limit: 1,
     interval: intervalMs
-  });
+  })
 
   return {
-    [Symbol.asyncIterator]() {
+    [Symbol.asyncIterator] () {
       // Get the iterator from the iterable
-      const iterator = iterable[Symbol.iterator]();
+      const iterator = iterable[Symbol.iterator]()
 
       // Throttled version of next() that respects the rate limit
       const throttledNext = throttled(() => {
-        return iterator.next();
-      });
+        return iterator.next()
+      })
 
       return {
-        async next() {
+        async next () {
           // This will wait at least intervalMs between calls
-          return throttledNext();
+          return throttledNext()
         }
-      };
+      }
     }
-  };
+  }
 }
