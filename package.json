@@ -33,6 +33,7 @@
     "dotenv": "^4.0.0",
     "ky": "^1.4.0",
     "mailparser": "^3.7.1",
+    "p-throttle": "^7.0.0",
     "xml2js": "^0.6.2"
   },
   "repository": {

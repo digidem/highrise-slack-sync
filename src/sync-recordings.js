@@ -5,6 +5,7 @@ import { simpleParser } from 'mailparser'
 import makeDebug from 'debug'
 
 import Highrise from './highrise.js'
+import pThrottle from 'p-throttle'
 
 const debug = makeDebug('highrise-slack:sync')
 
@@ -73,7 +74,8 @@ export default async function syncRecordings (
     debug(`Only processing first ${filteredData.length} records due to requestLimit of ${requestLimit}`)
   }
 
-  for (const rec of filteredData) {
+  // rate limit sending webhooks to Slack to one every 100ms
+  for await (const rec of rateLimitedAsyncIterable(filteredData, 100)) {
     try {
       rec.author = await client.get('users/' + rec.authorId + '.xml')
     } catch (e) {
@@ -211,4 +213,39 @@ function cmp (prop) {
   return function (a, b) {
     return a[prop] > b[prop] ? 1 : a[prop] < b[prop] ? -1 : 0
   }
+}
+
+/**
+ * Converts a synchronous iterable to a rate-limited asynchronous iterable
+ *
+ * @param {Iterable<T>} iterable - The synchronous iterable to convert
+ * @param {number} intervalMs - The minimum time between iterations in milliseconds
+ * @returns {AsyncIterable<T>} A rate-limited asynchronous iterable
+ * @template T
+ */
+function rateLimitedAsyncIterable(iterable, intervalMs) {
+  // Create a throttled function that will only be called once per intervalMs
+  const throttled = pThrottle({
+    limit: 1,
+    interval: intervalMs
+  });
+
+  return {
+    [Symbol.asyncIterator]() {
+      // Get the iterator from the iterable
+      const iterator = iterable[Symbol.iterator]();
+
+      // Throttled version of next() that respects the rate limit
+      const throttledNext = throttled(() => {
+        return iterator.next();
+      });
+
+      return {
+        async next() {
+          // This will wait at least intervalMs between calls
+          return throttledNext();
+        }
+      };
+    }
+  };
 }
