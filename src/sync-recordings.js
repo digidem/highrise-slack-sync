@@ -189,7 +189,7 @@ export default async function syncRecordings (
       // By default, ky does not retry POST requests
       retry: {
         limit: 2,
-        methods: ['get', 'put', 'head', 'delete', 'options', 'trace'],
+        methods: ['post'],
         statusCodes: [429],
         afterStatusCodes: [429]
       }
